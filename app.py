@@ -23,7 +23,7 @@ class Blog(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(100), unique=False)
     content = db.Column(db.Text, unique=False)
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    
 
     def __init__(self, title, content):
         self.title = title
@@ -38,7 +38,7 @@ blogs_schema = BlogSchema(many=True)
 
 # Endpoint to create a new blog
 
-@app.route('/blog', methods=['POST'])
+@app.route('/api/blog', methods=['POST'])
 def add_blog():
     title = request.json['title']
     content = request.json['content']
@@ -54,7 +54,7 @@ def add_blog():
 
 
 # Endpoint to query all blogs
-@app.route('/blogs', methods=["GET"])
+@app.route('/api/blogs', methods=["GET"])
 def get_blogs():
     all_blogs = Blog.query.all()
     result = blogs_schema.dump(all_blogs)
@@ -62,14 +62,14 @@ def get_blogs():
 
 
 # Endpoint for querying a single blog
-@app.route('/blog/<id>', methods=["GET"])
+@app.route('/api/blog/<id>', methods=["GET"])
 def get_blog(id):
     blog = Blog.query.get(id)
     return blog_schema.jsonify(blog)
 
 
 # Endpoint for updating a blog
-@app.route('/blog/<id>', methods=["PUT"])
+@app.route('/api/blog/<id>', methods=["PUT"])
 def update_blog(id):
     blog = Blog.query.get(id)
     title = request.json['title']
@@ -83,7 +83,7 @@ def update_blog(id):
 
 
 #Endpoint for deleting a blog
-@app.route('/blog/<id>', methods=["DELETE"])
+@app.route('/api/blog/<id>', methods=["DELETE"])
 def delete_blog(id):
     blog = Blog.query.get(id)
     title = request.json['title']
@@ -93,7 +93,7 @@ def delete_blog(id):
     db.session.delete(blog)
     db.session.commit()
 
-    return f"Blog '{title}' has been deleted!"
+    return f"Blog: '{title}' has been deleted!"
 
 if __name__ == '__main__':
     app.run(debug=True)
