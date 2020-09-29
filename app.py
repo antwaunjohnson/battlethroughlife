@@ -9,14 +9,14 @@ app = Flask(__name__)
 
 
 
-ENV = 'dev'
+ENV = 'prod'
 
 if ENV == 'dev':
     app.debug = True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://aj:asdfasdf@localhost/battledb'
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = ''
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://ucxbkrxfgfbgsj:f1c6be74d862670481850369f0b4d4a36b434a2ff94f21e3c040a29215f7af68@ec2-54-166-251-173.compute-1.amazonaws.com:5432/dbv1husuqqrgb1'
 
 
 
