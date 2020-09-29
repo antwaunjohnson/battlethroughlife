@@ -1,14 +1,13 @@
 from flask import Flask, request, jsonify
 from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
-import psycopg2
-import os
+
 
 
 
 app = Flask(__name__)
 
-DATABASE_URL = os.environ['DATABASE_URL']
+
 
 ENV = 'dev'
 
@@ -17,9 +16,9 @@ if ENV == 'dev':
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://aj:asdfasdf@localhost/battledb'
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'DATABASE_URL'
+    app.config['SQLALCHEMY_DATABASE_URI'] = ''
 
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
