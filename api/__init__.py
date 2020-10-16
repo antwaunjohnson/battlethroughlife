@@ -7,6 +7,7 @@ from os import environ
 db = SQLAlchemy()
 ma = Marshmallow()
 
+
 def create_app():
     app = Flask(__name__)
     
@@ -26,6 +27,7 @@ def create_app():
 
         db.init_app(app)
         ma.init_app(app)
+        
 
         from api.Blog.blog_routes import blogs
         app.register_blueprint(blogs)
