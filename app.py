@@ -15,7 +15,7 @@ ENV = 'dev'
 
 if ENV == 'dev':
     app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('SQLALCHEMY_DATABASE_URI')
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://aj:asdfasdf@localhost/battledb'
     
 else:
     app.debug = False
@@ -153,7 +153,6 @@ def delete_blog(id):
     return jsonify("Blog was succesfully deleted")
 
 
-# Tag model and foreing_key
 
 if __name__ == '__main__':
     app.run(debug=True)
