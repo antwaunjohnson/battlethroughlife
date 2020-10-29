@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+import os
 
 app = Flask(__name__)
 
+DATABASE_URL = os.environ['DATABASE_URL']
 
 ENV = 'prod'
 
@@ -42,6 +44,8 @@ class BlogSchema(ma.Schema):
 blog_schema = BlogSchema()
 blogs_schema = BlogSchema(many=True)
 
+
+# Routes for blog
 # Endpoint to create a new blog
 
 @app.route('/add_blog', methods=['POST'])

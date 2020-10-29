@@ -12,6 +12,7 @@ psycopg2 = "==2.8.5"
 gunicorn = "*"
 Flask-Cors = "*"
 python-dotenv = "*"
+Flask-Login = "*"
 
 [dev-packages]
 
