@@ -12,9 +12,13 @@ psycopg2 = "==2.8.5"
 gunicorn = "*"
 Flask-Cors = "*"
 python-dotenv = "*"
-Flask-Login = "*"
+flask-login = "*"
+click = "*"
 
 [dev-packages]
 
 [requires]
 python_version = "3.8"
+
+[packages.Flask-Dance]
+extras = [ "sqla",]
